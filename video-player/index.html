@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI ரோபோ தமிழ் கற்றுத் தருது! — Tamil AI Video Player & Generator</title>
+  <title>AI ரோபோ தமிழ் கற்றுத் தருது! — Part 4 & 5 Video Generator (Ramesh Jay @2grameshmail)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@600;800&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
       padding: 0;
     }
     body {
-      background: #0f172a;
+      background: #090d16;
       color: #f8fafc;
       font-family: 'Baloo Thambi 2', 'Poppins', sans-serif;
       display: flex;
@@ -29,10 +29,10 @@
       margin-bottom: 20px;
     }
     h1 {
-      font-size: 28px;
+      font-size: 26px;
       color: #38bdf8;
-      text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
-      margin-bottom: 5px;
+      text-shadow: 0 2px 15px rgba(56, 189, 248, 0.5);
+      margin-bottom: 4px;
     }
     p.subtitle {
       font-size: 14px;
@@ -44,22 +44,18 @@
       gap: 30px;
       justify-content: center;
       align-items: flex-start;
-      max-width: 1100px;
+      max-width: 1150px;
       width: 100%;
     }
-    /* Vertical 9:16 Video Player Frame */
+    /* Vertical 9:16 Video Player Frame (360x640) */
     .video-frame-container {
       position: relative;
       width: 360px;
       height: 640px;
       background: #000;
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 4px #334155;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 0 4px #1e293b;
     }
     #videoCanvas {
       position: absolute;
@@ -73,17 +69,17 @@
     .control-panel {
       flex: 1;
       min-width: 320px;
-      max-width: 480px;
-      background: #1e293b;
+      max-width: 520px;
+      background: #111827;
       padding: 24px;
       border-radius: 20px;
-      border: 1px solid #334155;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid #1f2937;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
     .panel-section {
       margin-bottom: 24px;
       padding-bottom: 20px;
-      border-bottom: 1px solid #334155;
+      border-bottom: 1px solid #1f2937;
     }
     .panel-section:last-child {
       border-bottom: none;
@@ -99,6 +95,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 800;
     }
     .btn {
       display: inline-flex;
@@ -112,7 +109,7 @@
       font-weight: 800;
       padding: 14px 24px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
       width: 100%;
       transition: all 0.2s;
@@ -131,28 +128,15 @@
       background: #dc2626;
       box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
     }
-    .btn-success {
-      background: #10b981;
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-    }
-    .btn-success:hover {
-      background: #059669;
-    }
-    .btn:disabled {
-      background: #475569;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
     .status-badge {
       display: inline-block;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 800;
-      background: #334155;
+      background: #1f2937;
       color: #cbd5e1;
-      margin-top: 8px;
+      margin-top: 10px;
     }
     .status-badge.active {
       background: #ef4444;
@@ -164,16 +148,24 @@
       50% { opacity: 0.6; }
       100% { opacity: 1; }
     }
-    .audio-input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .select-theme {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      background: #1f2937;
+      color: white;
+      border: 1px solid #374151;
+      font-family: inherit;
+      font-size: 15px;
+      margin-top: 6px;
+      cursor: pointer;
     }
     .file-input-wrapper {
       position: relative;
       overflow: hidden;
       display: inline-block;
       width: 100%;
+      margin-top: 8px;
     }
     .file-input-wrapper input[type=file] {
       font-size: 100px;
@@ -184,29 +176,33 @@
       cursor: pointer;
     }
     .btn-secondary {
-      background: #334155;
+      background: #1f2937;
       box-shadow: none;
-      border: 1px solid #475569;
+      border: 1px solid #374151;
     }
     .btn-secondary:hover {
-      background: #475569;
+      background: #374151;
     }
-    .select-theme {
-      width: 100%;
+    .description-box {
+      background: #030712;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
       padding: 12px;
-      border-radius: 10px;
-      background: #0f172a;
-      color: white;
-      border: 1px solid #334155;
-      font-family: inherit;
-      font-size: 15px;
-      margin-top: 6px;
-    }
-    .instructions {
-      font-size: 13px;
+      font-size: 12px;
       color: #94a3b8;
       line-height: 1.6;
-      margin-top: 10px;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      margin-top: 8px;
+    }
+    .copy-btn {
+      background: #059669;
+      font-size: 13px;
+      padding: 8px 14px;
+      margin-top: 8px;
+      border-radius: 8px;
     }
     .highlight {
       color: #38bdf8;
@@ -217,22 +213,22 @@
 <body>
   <header>
     <h1>🤖 AI ரோபோ தமிழ் கற்றுத் தருது!</h1>
-    <p class="subtitle">Custom Video Generator with Your Vocaroo Voice (Ramesh Jay @2grameshmail)</p>
+    <p class="subtitle">Exact Theme from Part 3 (https://youtube.com/shorts/RQvAV6BXouI) — Ramesh Jay (@2grameshmail)</p>
   </header>
 
   <div class="main-container">
-    <!-- Vertical YouTube Short Video Preview (360x640 - 9:16) -->
+    <!-- 9:16 Shorts Video Canvas (360x640) -->
     <div class="video-frame-container">
       <canvas id="videoCanvas" width="360" height="640"></canvas>
     </div>
 
     <!-- Control Panel -->
     <div class="control-panel">
-      <!-- 1. Play & Preview Section -->
+      <!-- 1. Play & Voice Preview -->
       <div class="panel-section">
-        <div class="panel-title">🎬 1. Play Visuals + Your Voice</div>
-        <p style="font-size: 14px; color: #cbd5e1; margin-bottom: 12px;">
-          Playing your voice recording: <span class="highlight">https://voca.ro/1op2MSdN9MuX</span>
+        <div class="panel-title">🎬 1. Play Video with Your Voice</div>
+        <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;">
+          Using your Vocaroo recording (<span class="highlight">voca.ro/1op2MSdN9MuX</span>) and the exact visual theme from your <b>Part 3 video</b>!
         </p>
         <button id="playBtn" class="btn">
           <span>▶️ Play Video & Voice</span>
@@ -240,11 +236,11 @@
         <div id="playStatus" class="status-badge">Ready to Play</div>
       </div>
 
-      <!-- 2. Export & Download Section -->
+      <!-- 2. Export & Download -->
       <div class="panel-section">
-        <div class="panel-title">💾 2. Record & Save Video File</div>
+        <div class="panel-title">💾 2. Record & Save Video File (.webm)</div>
         <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">
-          Click the button below to generate and record the video automatically. When it finishes playing, your browser will download a <b>ready-to-upload .webm video file</b> for YouTube Shorts!
+          Click to automatically record the Canvas visuals + your voice. It downloads as a <b>ready-to-upload YouTube Short (.webm)</b>!
         </p>
         <button id="recordBtn" class="btn btn-record">
           <span>⏺️ Generate & Download Video File (.webm)</span>
@@ -252,23 +248,21 @@
         <div id="recordStatus" class="status-badge">Not Recording</div>
       </div>
 
-      <!-- 3. Audio & Topic Selection -->
+      <!-- 3. Lesson Theme Selector -->
       <div class="panel-section">
-        <div class="panel-title">⚙️ 3. Customize Lesson & Audio</div>
-        <label style="font-size: 14px; color: #cbd5e1;">Select Visual Theme / Numbers:</label>
+        <div class="panel-title">⚙️ 3. Choose Lesson Theme</div>
+        <label style="font-size: 13px; color: #cbd5e1;">Select Episode:</label>
         <select id="lessonSelect" class="select-theme">
-          <option value="num1to5">🖐️ Numbers 1 to 5 (ஒன்று முதல் ஐந்து வரை)</option>
-          <option value="num6to10">🖐️🖐️ Numbers 6 to 10 (ஆறு முதல் பத்து வரை)</option>
-          <option value="words">🍎 First Tamil Words (அம்மா, அப்பா, பசு)</option>
+          <option value="part4">Part 4: எண்கள் 1 முதல் 5 (Numbers 1 to 5) 🖐️</option>
+          <option value="part5">Part 5: எண்கள் 6 முதல் 10 (Numbers 6 to 10) 🖐️🖐️</option>
+          <option value="words">Part 6: முதல் வார்த்தைகள் (Amma, Appa, Cow) 🍎</option>
         </select>
 
-        <div style="margin-top: 16px;">
-          <label style="font-size: 13px; color: #94a3b8; display: block; margin-bottom: 6px;">
-            Want to use a local MP3 file instead of Vocaroo URL?
-          </label>
+        <div style="margin-top: 14px;">
+          <label style="font-size: 13px; color: #94a3b8;">Want to use a local MP3 file instead of Vocaroo?</label>
           <div class="file-input-wrapper">
             <button class="btn btn-secondary">
-              <span>📂 Select Local MP3 / Voice File</span>
+              <span>📂 Select Local MP3 File</span>
             </button>
             <input type="file" id="localAudioInput" accept="audio/*">
           </div>
@@ -276,24 +270,47 @@
         </div>
       </div>
 
-      <!-- 4. Quick Help -->
+      <!-- 4. YouTube Description (Matching Part 3 Theme) -->
       <div class="panel-section">
-        <div class="panel-title">🌟 How to Upload to YouTube</div>
-        <div class="instructions">
-          1. Click <b>"Generate & Download Video File"</b>.<br>
-          2. Wait for the video to play through and save.<br>
-          3. Upload the downloaded video to YouTube Shorts.<br>
-          4. Title: <span class="highlight">1 முதல் 5 வரை தமிழில் எண்ணலாமா? 🖐️ #LearnTamil #Shorts</span>
-        </div>
+        <div class="panel-title">📋 YouTube Description (Same as Part 3!)</div>
+        <div id="descBox" class="description-box">வணக்கம் குட்டீஸ்! 🤖✨
+
+நான் ரோபோ மீண்டும் வந்துட்டேன்!
+Part 4-ல நாம தமிழ் எண்கள் 1 முதல் 5 வரை கற்கப் போறோம்!
+
+📚 இன்று கற்கும் எண்கள்:
+
+✅ 1 – ஒன்று (One) 🖐️
+✅ 2 – இரண்டு (Two) 🍎🍎
+✅ 3 – மூன்று (Three) ⭐️⭐️⭐️
+✅ 4 – நான்கு (Four) 🎈🎈🎈🎈
+✅ 5 – ஐந்து (Five) 🖐️
+
+ரோபோவுடன் சேர்ந்து சொல்லுங்க! 🎉
+
+━━━━━━━━━━━━━━━━━━━━
+📖 Series – Tamil AI for Kids
+━━━━━━━━━━━━━━━━━━━━
+Part 1 → அ ஆ இ ஈ ✅
+Part 2 → உ ஊ எ ஏ ✅
+Part 3 → ஐ ஒ ஓ ஔ ✅
+Part 4 → 1 முதல் 5 எண்கள் ✅ (This video)
+Part 5 → Coming Soon! 🔜
+━━━━━━━━━━━━━━━━━━━━
+
+குழந்தைகளுக்கு தமிழ் கற்க இது ஒரு fun-ஆன வழி! 🌟
+
+👉 Subscribe பண்ணுங்க! அடுத்த part miss பண்ணாதீங்க! 🔔</div>
+        <button id="copyBtn" class="btn copy-btn">📋 Copy Description for YouTube</button>
       </div>
     </div>
   </div>
 
-  <!-- Hidden HTML5 Audio Element for Voice Playback -->
+  <!-- Hidden Audio Player -->
   <audio id="voiceAudio" crossorigin="anonymous" preload="auto"></audio>
 
   <script>
-    // --- Configuration & Audio URL ---
+    // --- Vocaroo Audio Setup ---
     const VOCAROO_MP3_URL = 'https://media1.vocaroo.com/mp3/1op2MSdN9MuX';
     const audioEl = document.getElementById('voiceAudio');
     audioEl.src = VOCAROO_MP3_URL;
@@ -322,40 +339,138 @@
     const lessonSelect = document.getElementById('lessonSelect');
     const localAudioInput = document.getElementById('localAudioInput');
     const selectedFileName = document.getElementById('selectedFileName');
+    const descBox = document.getElementById('descBox');
+    const copyBtn = document.getElementById('copyBtn');
 
-    // --- Lesson Content & Captions ---
+    // --- Exact Theme Lesson Data (Matching Part 3 Style) ---
     const LESSON_DATA = {
-      num1to5: [
-        { time: 0, textTa: "1 முதல் 5 வரை எண்ணலாமா? 🖐️", textEn: "Shall we count 1 to 5?", icon: "🤖" },
-        { time: 3, textTa: "1 - ஒன்று", textEn: "Onru (One)", icon: "🍎", count: 1 },
-        { time: 6, textTa: "2 - இரண்டு", textEn: "Irandu (Two)", icon: "🍎", count: 2 },
-        { time: 9, textTa: "3 - மூன்று", textEn: "Moonru (Three)", icon: "🍎", count: 3 },
-        { time: 13, textTa: "4 - நான்கு", textEn: "Naangu (Four)", icon: "🍎", count: 4 },
-        { time: 17, textTa: "5 - ஐந்து", textEn: "Ainthu (Five)", icon: "🍎", count: 5 },
-        { time: 21, textTa: "ரொம்ப அருமை குட்டீஸ்! 🌟", textEn: "Great job kids!", icon: "🎉" },
-        { time: 24, textTa: "Subscribe செய்யுங்கள்! 👍", textEn: "Subscribe for more Tamil lessons!", icon: "🔔" }
+      part4: [
+        { time: 0, textTa: "வணக்கம் குட்டீஸ்! 🤖✨", textEn: "நான் ரோபோ மீண்டும் வந்துட்டேன்!", cardTa: "எண்கள் 1 முதல் 5", cardEn: "Numbers 1 to 5", icon: "🖐️", color: "#38bdf8" },
+        { time: 3, textTa: "✅ 1 – ஒன்று", textEn: "Onru (One)", cardTa: "1 - ஒன்று", cardEn: "1 Apple 🍎", icon: "🍎", count: 1, color: "#ef4444" },
+        { time: 6, textTa: "✅ 2 – இரண்டு", textEn: "Irandu (Two)", cardTa: "2 - இரண்டு", cardEn: "2 Apples 🍎🍎", icon: "🍎", count: 2, color: "#f97316" },
+        { time: 9, textTa: "✅ 3 – மூன்று", textEn: "Moonru (Three)", cardTa: "3 - மூன்று", cardEn: "3 Stars ⭐️⭐️⭐️", icon: "⭐️", count: 3, color: "#eab308" },
+        { time: 13, textTa: "✅ 4 – நான்கு", textEn: "Naangu (Four)", cardTa: "4 - நான்கு", cardEn: "4 Balloons 🎈🎈🎈🎈", icon: "🎈", count: 4, color: "#10b981" },
+        { time: 17, textTa: "✅ 5 – ஐந்து", textEn: "Ainthu (Five)", cardTa: "5 - ஐந்து", cardEn: "5 Fingers 🖐️", icon: "🖐️", count: 5, color: "#38bdf8" },
+        { time: 21, textTa: "ரோபோவுடன் சேர்ந்து சொல்லுங்க! 🎉", textEn: "Super Job Kutees!", cardTa: "ரொம்ப அருமை! 🌟", cardEn: "All 5 Numbers Completed!", icon: "🎉", color: "#a855f7" },
+        { time: 24, textTa: "👉 Subscribe பண்ணுங்க! 🔔", textEn: "அடுத்த part miss பண்ணாதீங்க!", cardTa: "Subscribe & Like 👍", cardEn: "Tamil AI for Kids", icon: "🔔", color: "#ef4444" }
       ],
-      num6to10: [
-        { time: 0, textTa: "6 முதல் 10 வரை எண்ணலாமா? 🖐️🖐️", textEn: "Shall we count 6 to 10?", icon: "🤖" },
-        { time: 3, textTa: "6 - ஆறு", textEn: "Aaru (Six)", icon: "⭐", count: 6 },
-        { time: 6, textTa: "7 - ஏழு", textEn: "Ezhu (Seven)", icon: "⭐", count: 7 },
-        { time: 9, textTa: "8 - எட்டு", textEn: "Ettu (Eight)", icon: "⭐", count: 8 },
-        { time: 13, textTa: "9 - ஒன்பது", textEn: "Onbadhu (Nine)", icon: "⭐", count: 9 },
-        { time: 17, textTa: "10 - பத்து", textEn: "Pathu (Ten)", icon: "⭐", count: 10 },
-        { time: 21, textTa: "10 எண்களும் சூப்பர்! 🌟", textEn: "You learned all 10!", icon: "🎉" },
-        { time: 24, textTa: "Subscribe செய்யுங்கள்! 👍", textEn: "Subscribe for more Tamil lessons!", icon: "🔔" }
+      part5: [
+        { time: 0, textTa: "வணக்கம் குட்டீஸ்! 🤖✨", textEn: "நான் ரோபோ மீண்டும் வந்துட்டேன்!", cardTa: "எண்கள் 6 முதல் 10", cardEn: "Numbers 6 to 10", icon: "🖐️🖐️", color: "#38bdf8" },
+        { time: 3, textTa: "✅ 6 – ஆறு", textEn: "Aaru (Six)", cardTa: "6 - ஆறு", cardEn: "6 Stars ⭐⭐⭐⭐⭐⭐", icon: "⭐", count: 6, color: "#f59e0b" },
+        { time: 6, textTa: "✅ 7 – ஏழு", textEn: "Ezhu (Seven)", cardTa: "7 - ஏழு", cardEn: "7 Stars ⭐⭐⭐⭐⭐⭐⭐", icon: "⭐", count: 7, color: "#10b981" },
+        { time: 9, textTa: "✅ 8 – எட்டு", textEn: "Ettu (Eight)", cardTa: "8 - எட்டு", cardEn: "8 Stars ⭐⭐⭐⭐⭐⭐⭐⭐", icon: "⭐", count: 8, color: "#3b82f6" },
+        { time: 13, textTa: "✅ 9 – ஒன்பது", textEn: "Onbadhu (Nine)", cardTa: "9 - ஒன்பது", cardEn: "9 Stars ⭐⭐⭐⭐⭐⭐⭐⭐⭐", icon: "⭐", count: 9, color: "#8b5cf6" },
+        { time: 17, textTa: "✅ 10 – பத்து", textEn: "Pathu (Ten)", cardTa: "10 - பத்து", cardEn: "10 Fingers 🖐️🖐️", icon: "⭐", count: 10, color: "#ec4899" },
+        { time: 21, textTa: "10 எண்களும் சூப்பர்! 🎉", textEn: "All 10 Numbers Completed!", cardTa: "ரொம்ப அருமை! 🌟", cardEn: "1 to 10 Done!", icon: "🎉", color: "#eab308" },
+        { time: 24, textTa: "👉 Subscribe பண்ணுங்க! 🔔", textEn: "அடுத்த part miss பண்ணாதீங்க!", cardTa: "Subscribe & Like 👍", cardEn: "Tamil AI for Kids", icon: "🔔", color: "#ef4444" }
       ],
       words: [
-        { time: 0, textTa: "முதல் தமிழ் வார்த்தைகள்! 🤖", textEn: "First Tamil Words!", icon: "🤖" },
-        { time: 3, textTa: "1. அம்மா", textEn: "Amma (Mother)", icon: "👩" },
-        { time: 8, textTa: "2. அப்பா", textEn: "Appa (Father)", icon: "👨" },
-        { time: 14, textTa: "3. பசு", textEn: "Pasu (Cow)", icon: "🐮" },
-        { time: 20, textTa: "ரொம்ப அருமை குட்டீஸ்! 🌟", textEn: "Wonderful!", icon: "🎉" },
-        { time: 24, textTa: "Subscribe செய்யுங்கள்! 👍", textEn: "Subscribe for more Tamil lessons!", icon: "🔔" }
+        { time: 0, textTa: "வணக்கம் குட்டீஸ்! 🤖✨", textEn: "நான் ரோபோ மீண்டும் வந்துட்டேன்!", cardTa: "முதல் வார்த்தைகள்", cardEn: "First Words in Tamil", icon: "🤖", color: "#38bdf8" },
+        { time: 3, textTa: "✅ அம்மா – Mother", textEn: "Amma", cardTa: "1. அம்மா", cardEn: "Mother 👩", icon: "👩", color: "#ec4899" },
+        { time: 8, textTa: "✅ அப்பா – Father", textEn: "Appa", cardTa: "2. அப்பா", cardEn: "Father 👨", icon: "👨", color: "#3b82f6" },
+        { time: 14, textTa: "✅ பசு – Cow", textEn: "Pasu", cardTa: "3. பசு", cardEn: "Cow 🐮", icon: "🐮", color: "#10b981" },
+        { time: 20, textTa: "ரோபோவுடன் சேர்ந்து சொல்லுங்க! 🎉", textEn: "Wonderful Job!", cardTa: "ரொம்ப அருமை! 🌟", cardEn: "Words Done!", icon: "🎉", color: "#f59e0b" },
+        { time: 24, textTa: "👉 Subscribe பண்ணுங்க! 🔔", textEn: "அடுத்த part miss பண்ணாதீங்க!", cardTa: "Subscribe & Like 👍", cardEn: "Tamil AI for Kids", icon: "🔔", color: "#ef4444" }
       ]
     };
 
-    // --- File Input Handler ---
+    // --- Description Templates matching Part 3 ---
+    const DESCRIPTIONS = {
+      part4: `வணக்கம் குட்டீஸ்! 🤖✨
+
+நான் ரோபோ மீண்டும் வந்துட்டேன்!
+Part 4-ல நாம தமிழ் எண்கள் 1 முதல் 5 வரை கற்கப் போறோம்!
+
+📚 இன்று கற்கும் எண்கள்:
+
+✅ 1 – ஒன்று (One) 🖐️
+✅ 2 – இரண்டு (Two) 🍎🍎
+✅ 3 – மூன்று (Three) ⭐️⭐️⭐️
+✅ 4 – நான்கு (Four) 🎈🎈🎈🎈
+✅ 5 – ஐந்து (Five) 🖐️
+
+ரோபோவுடன் சேர்ந்து சொல்லுங்க! 🎉
+
+━━━━━━━━━━━━━━━━━━━━
+📖 Series – Tamil AI for Kids
+━━━━━━━━━━━━━━━━━━━━
+Part 1 → அ ஆ இ ஈ ✅
+Part 2 → உ ஊ எ ஏ ✅
+Part 3 → ஐ ஒ ஓ ஔ ✅
+Part 4 → 1 முதல் 5 எண்கள் ✅ (This video)
+Part 5 → Coming Soon! 🔜
+━━━━━━━━━━━━━━━━━━━━
+
+குழந்தைகளுக்கு தமிழ் கற்க இது ஒரு fun-ஆன வழி! 🌟
+
+👉 Subscribe பண்ணுங்க! அடுத்த part miss பண்ணாதீங்க! 🔔`,
+      part5: `வணக்கம் குட்டீஸ்! 🤖✨
+
+நான் ரோபோ மீண்டும் வந்துட்டேன்!
+Part 5-ல நாம தமிழ் எண்கள் 6 முதல் 10 வரை கற்கப் போறோம்!
+
+📚 இன்று கற்கும் எண்கள்:
+
+✅ 6 – ஆறு (Six) ⭐
+✅ 7 – ஏழு (Seven) ⭐
+✅ 8 – எட்டு (Eight) ⭐
+✅ 9 – ஒன்பது (Nine) ⭐
+✅ 10 – பத்து (Ten) 🖐️🖐️
+
+ரோபோவுடன் சேர்ந்து சொல்லுங்க! 🎉
+
+━━━━━━━━━━━━━━━━━━━━
+📖 Series – Tamil AI for Kids
+━━━━━━━━━━━━━━━━━━━━
+Part 1 → அ ஆ இ ஈ ✅
+Part 2 → உ ஊ எ ஏ ✅
+Part 3 → ஐ ஒ ஓ ஔ ✅
+Part 4 → 1 முதல் 5 எண்கள் ✅
+Part 5 → 6 முதல் 10 எண்கள் ✅ (This video)
+━━━━━━━━━━━━━━━━━━━━
+
+குழந்தைகளுக்கு தமிழ் கற்க இது ஒரு fun-ஆன வழி! 🌟
+
+👉 Subscribe பண்ணுங்க! அடுத்த part miss பண்ணாதீங்க! 🔔`,
+      words: `வணக்கம் குட்டீஸ்! 🤖✨
+
+நான் ரோபோ மீண்டும் வந்துட்டேன்!
+Part 6-ல நாம முதல் தமிழ் சொற்களை கற்கப் போறோம்!
+
+📚 இன்று கற்கும் சொற்கள்:
+
+✅ அம்மா – Mother 👩
+✅ அப்பா – Father 👨
+✅ பசு – Cow 🐮
+
+ரோபோவுடன் சேர்ந்து சொல்லுங்க! 🎉
+
+━━━━━━━━━━━━━━━━━━━━
+📖 Series – Tamil AI for Kids
+━━━━━━━━━━━━━━━━━━━━
+Part 1 → அ ஆ இ ஈ ✅
+Part 2 → உ ஊ எ ஏ ✅
+Part 3 → ஐ ஒ ஓ ஔ ✅
+Part 4 → எண்கள் ✅
+Part 6 → முதல் சொற்கள் ✅ (This video)
+━━━━━━━━━━━━━━━━━━━━
+
+குழந்தைகளுக்கு தமிழ் கற்க இது ஒரு fun-ஆன வழி! 🌟
+
+👉 Subscribe பண்ணுங்க! அடுத்த part miss பண்ணாதீங்க! 🔔`
+    };
+
+    lessonSelect.addEventListener('change', () => {
+      descBox.textContent = DESCRIPTIONS[lessonSelect.value] || DESCRIPTIONS.part4;
+      drawScene(currentTime);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(descBox.textContent);
+      copyBtn.textContent = '✅ Copied to Clipboard!';
+      setTimeout(() => copyBtn.textContent = '📋 Copy Description for YouTube', 2000);
+    });
+
     localAudioInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (file) {
@@ -365,7 +480,6 @@
       }
     });
 
-    // --- Initialize Web Audio Context for Stream Recording ---
     function initAudioContext() {
       if (!audioCtx) {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -373,14 +487,13 @@
         audioSourceNode = audioCtx.createMediaElementSource(audioEl);
         audioDestinationNode = audioCtx.createMediaStreamDestination();
         audioSourceNode.connect(audioDestinationNode);
-        audioSourceNode.connect(audioCtx.destination); // Play through speakers too
+        audioSourceNode.connect(audioCtx.destination);
       }
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
     }
 
-    // --- Play / Pause Logic ---
     playBtn.addEventListener('click', async () => {
       if (isPlaying) {
         stopPlayback();
@@ -389,7 +502,6 @@
       }
     });
 
-    // --- Record Logic ---
     recordBtn.addEventListener('click', async () => {
       if (isRecording) {
         stopRecording();
@@ -431,14 +543,13 @@
       playBtn.innerHTML = '<span>▶️ Play Video & Voice</span>';
       playStatus.textContent = 'Ready to Play';
       playStatus.classList.remove('active');
-      drawScene(0); // Reset canvas
+      drawScene(0);
     }
 
     async function startRecording() {
       initAudioContext();
       recordedChunks = [];
 
-      // Combine canvas video stream (30 fps) with Web Audio stream
       const canvasStream = canvas.captureStream(30);
       const combinedStream = new MediaStream([
         ...canvasStream.getVideoTracks(),
@@ -463,7 +574,7 @@
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.download = 'AI_Tamil_Kids_Short.webm';
+        a.download = 'AI_Tamil_Kids_Part4.webm';
         document.body.appendChild(a);
         a.click();
         setTimeout(() => {
@@ -471,14 +582,14 @@
           URL.revokeObjectURL(url);
         }, 100);
 
-        recordStatus.textContent = '✅ Saved AI_Tamil_Kids_Short.webm';
+        recordStatus.textContent = '✅ Saved AI_Tamil_Kids_Part4.webm';
         recordStatus.classList.remove('active');
         recordBtn.innerHTML = '<span>⏺️ Generate & Download Video File (.webm)</span>';
         isRecording = false;
       };
 
       isRecording = true;
-      recordBtn.innerHTML = '<span>⏹️ Recording in Progress... (Click to Stop)</span>';
+      recordBtn.innerHTML = '<span>⏹️ Recording... (Click to Stop)</span>';
       recordStatus.textContent = 'Recording Video & Audio...';
       recordStatus.classList.add('active');
 
@@ -493,7 +604,6 @@
       stopPlayback();
     }
 
-    // --- Animation & Rendering Loop ---
     function animate() {
       if (!isPlaying) return;
       currentTime = audioEl.currentTime || ((performance.now() - startTime) / 1000);
@@ -501,31 +611,31 @@
       animationId = requestAnimationFrame(animate);
     }
 
-    // --- Draw Complete Scene on Canvas (360x640) ---
+    // --- Draw Scene matching Part 3 Visual Theme ---
     function drawScene(time) {
-      // 1. Background Gradient (Night sky / tech theme)
+      // 1. Rich Deep Tech Gradient (Same as Part 3)
       const grad = ctx.createLinearGradient(0, 0, 0, 640);
-      grad.addColorStop(0, '#0f172a');
-      grad.addColorStop(0.5, '#1e1b4b');
-      grad.addColorStop(1, '#0f172a');
+      grad.addColorStop(0, '#0a0f1d');
+      grad.addColorStop(0.5, '#151e36');
+      grad.addColorStop(1, '#0a0f1d');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 360, 640);
 
-      // 2. Animated Floating Stars & Particles
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-      for (let i = 0; i < 15; i++) {
-        const x = (i * 73 + time * 10) % 360;
-        const y = (i * 97) % 640;
-        const r = (i % 3) + 1;
+      // 2. Animated Floating Particles
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+      for (let i = 0; i < 20; i++) {
+        const x = (i * 61 + time * 12) % 360;
+        const y = (i * 83) % 640;
+        const r = (i % 3) + 1.5;
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // 3. Top Branding Badge ("AI ரோபோ தமிழ் கற்றுத் தருது!")
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.8)';
+      // 3. Header Theme Box ("AI ரோபோ தமிழ் கற்றுத் தருது! 🤖✨")
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
       ctx.beginPath();
-      ctx.roundRect(20, 20, 320, 48, 16);
+      ctx.roundRect(16, 16, 328, 64, 16);
       ctx.fill();
       ctx.strokeStyle = '#38bdf8';
       ctx.lineWidth = 2;
@@ -534,10 +644,14 @@
       ctx.fillStyle = '#38bdf8';
       ctx.font = '800 18px "Baloo Thambi 2", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('🤖 AI ரோபோ தமிழ் கற்றுத் தருது!', 180, 52);
+      ctx.fillText('🤖 AI ரோபோ தமிழ் கற்றுத் தருது!', 180, 42);
 
-      // 4. Determine Current Lesson Slide
-      const currentLesson = LESSON_DATA[lessonSelect.value] || LESSON_DATA.num1to5;
+      ctx.fillStyle = '#fef08a';
+      ctx.font = '600 13px "Poppins", sans-serif';
+      ctx.fillText('✨ நான் ரோபோ மீண்டும் வந்துட்டேன்! ✨', 180, 64);
+
+      // 4. Current Lesson Slide Selection
+      const currentLesson = LESSON_DATA[lessonSelect.value] || LESSON_DATA.part4;
       let activeSlide = currentLesson[0];
       for (let i = 0; i < currentLesson.length; i++) {
         if (time >= currentLesson[i].time) {
@@ -545,118 +659,133 @@
         }
       }
 
-      // 5. Draw Cute AI Robot 🤖 (Floating in Center)
-      const floatY = Math.sin(time * 3) * 8;
+      // 5. Draw Smiling AI Robot 🤖 in Upper Center (Y=195)
+      const floatY = Math.sin(time * 3) * 6;
       const robotX = 180;
-      const robotY = 220 + floatY;
+      const robotY = 185 + floatY;
 
       // Antenna
       ctx.strokeStyle = '#94a3b8';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.moveTo(robotX, robotY - 60);
-      ctx.lineTo(robotX, robotY - 90);
+      ctx.moveTo(robotX, robotY - 50);
+      ctx.lineTo(robotX, robotY - 75);
       ctx.stroke();
 
-      // Glowing Antenna Ball
+      // Antenna Glowing Tip
       ctx.fillStyle = '#ef4444';
       ctx.beginPath();
-      ctx.arc(robotX, robotY - 95, 8, 0, Math.PI * 2);
+      ctx.arc(robotX, robotY - 78, 7, 0, Math.PI * 2);
       ctx.fill();
 
-      // Head Box
+      // Robot Head Box
       ctx.fillStyle = '#38bdf8';
       ctx.beginPath();
-      ctx.roundRect(robotX - 55, robotY - 65, 110, 85, 20);
+      ctx.roundRect(robotX - 45, robotY - 52, 90, 68, 16);
       ctx.fill();
       ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      // Screen Face (Dark Navy)
+      // Face Screen (Navy)
       ctx.fillStyle = '#0f172a';
       ctx.beginPath();
-      ctx.roundRect(robotX - 42, robotY - 50, 84, 55, 12);
+      ctx.roundRect(robotX - 35, robotY - 40, 70, 45, 10);
       ctx.fill();
 
-      // Glowing Eyes (Cyan)
-      const blink = Math.sin(time * 5) > 0.95 ? 2 : 12;
+      // Glowing Eyes
+      const blink = Math.sin(time * 5) > 0.95 ? 2 : 10;
       ctx.fillStyle = '#38bdf8';
       ctx.beginPath();
-      ctx.ellipse(robotX - 20, robotY - 25, 8, blink, 0, 0, Math.PI * 2);
-      ctx.ellipse(robotX + 20, robotY - 25, 8, blink, 0, 0, Math.PI * 2);
+      ctx.ellipse(robotX - 16, robotY - 20, 6, blink, 0, 0, Math.PI * 2);
+      ctx.ellipse(robotX + 16, robotY - 20, 6, blink, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cheerful Smile
+      // Smile
       ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.arc(robotX, robotY - 15, 15, 0.2, Math.PI - 0.2);
+      ctx.arc(robotX, robotY - 12, 12, 0.2, Math.PI - 0.2);
       ctx.stroke();
 
-      // Robot Body
-      ctx.fillStyle = '#475569';
+      // Robot Torso
+      ctx.fillStyle = '#334155';
       ctx.beginPath();
-      ctx.roundRect(robotX - 45, robotY + 28, 90, 75, 16);
+      ctx.roundRect(robotX - 36, robotY + 22, 72, 60, 14);
       ctx.fill();
       ctx.strokeStyle = '#38bdf8';
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Chest Emblem / Heart
-      ctx.fillStyle = '#ef4444';
-      ctx.font = '24px sans-serif';
-      ctx.fillText('❤️', robotX, robotY + 70);
+      // Heart
+      ctx.font = '20px sans-serif';
+      ctx.fillText('❤️', robotX, robotY + 57);
 
-      // 6. Draw Visual Counting Items (e.g. Apples / Stars)
-      if (activeSlide.count && activeSlide.icon) {
-        ctx.font = '36px sans-serif';
-        const startX = 180 - ((activeSlide.count - 1) * 28) / 2;
-        for (let j = 0; j < activeSlide.count; j++) {
-          const bounce = Math.sin(time * 4 + j) * 5;
-          ctx.fillText(activeSlide.icon, startX + (j * 28), 350 + bounce);
-        }
-      } else if (activeSlide.icon) {
-        ctx.font = '54px sans-serif';
-        ctx.fillText(activeSlide.icon, 180, 350);
-      }
-
-      // 7. Bold On-Screen Subtitle Box (Lower Screen - High CTR!)
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+      // 6. Large Central Visual Card (Matching Part 3 Style - 320x150 at Y=280)
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
       ctx.beginPath();
-      ctx.roundRect(24, 400, 312, 120, 20);
+      ctx.roundRect(20, 275, 320, 160, 24);
       ctx.fill();
-      ctx.strokeStyle = '#eab308';
-      ctx.lineWidth = 3;
+      ctx.strokeStyle = activeSlide.color || '#38bdf8';
+      ctx.lineWidth = 4;
       ctx.stroke();
 
-      // Tamil Text (Bold Yellow)
-      ctx.fillStyle = '#fef08a';
-      ctx.font = '800 28px "Baloo Thambi 2", sans-serif';
+      // Big Title inside Card (e.g., "1 - ஒன்று")
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '800 32px "Baloo Thambi 2", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(activeSlide.textTa, 180, 448);
+      ctx.fillText(activeSlide.cardTa, 180, 325);
 
-      // English Pronunciation (Cyan)
-      ctx.fillStyle = '#38bdf8';
-      ctx.font = '600 17px "Poppins", sans-serif';
-      ctx.fillText(activeSlide.textEn, 180, 488);
+      // Emojis / Counting Icons inside Card (e.g., 🍎🍎 or 🖐️)
+      if (activeSlide.count && activeSlide.icon) {
+        ctx.font = '34px sans-serif';
+        const startX = 180 - ((activeSlide.count - 1) * 32) / 2;
+        for (let j = 0; j < activeSlide.count; j++) {
+          const bounce = Math.sin(time * 4 + j) * 4;
+          ctx.fillText(activeSlide.icon, startX + (j * 32), 375 + bounce);
+        }
+      } else if (activeSlide.icon) {
+        ctx.font = '48px sans-serif';
+        ctx.fillText(activeSlide.icon, 180, 380);
+      }
 
-      // 8. Speaking / Audio Wave Animated Bar at Bottom
+      // Subtitle / English Transliteration inside Card
+      ctx.fillStyle = activeSlide.color || '#38bdf8';
+      ctx.font = '700 18px "Poppins", sans-serif';
+      ctx.fillText(activeSlide.cardEn, 180, 415);
+
+      // 7. Lower Subtitle Bar (Exact Hook & Checkmark Style: "✅ 1 – ஒன்று")
+      ctx.fillStyle = '#111827';
+      ctx.beginPath();
+      ctx.roundRect(16, 455, 328, 80, 16);
+      ctx.fill();
+      ctx.strokeStyle = '#eab308';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      ctx.fillStyle = '#fef08a';
+      ctx.font = '800 24px "Baloo Thambi 2", sans-serif';
+      ctx.fillText(activeSlide.textTa, 180, 490);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '600 15px "Poppins", sans-serif';
+      ctx.fillText(activeSlide.textEn, 180, 518);
+
+      // 8. Speaking Visualizer Bars
       if (isPlaying) {
         ctx.fillStyle = '#38bdf8';
-        for (let k = 0; k < 12; k++) {
-          const barH = 10 + Math.abs(Math.sin(time * 8 + k * 0.7)) * 25;
-          ctx.fillRect(80 + k * 18, 570 - barH, 8, barH);
+        for (let k = 0; k < 14; k++) {
+          const barH = 8 + Math.abs(Math.sin(time * 8 + k * 0.6)) * 22;
+          ctx.fillRect(55 + k * 18, 575 - barH, 7, barH);
         }
       }
 
-      // 9. YouTube Shorts Handle Footer
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '600 14px "Poppins", sans-serif';
-      ctx.fillText('@2grameshmail • AI Tamil for Kids', 180, 610);
+      // 9. YouTube Handle Footer
+      ctx.fillStyle = '#64748b';
+      ctx.font = '600 13px "Poppins", sans-serif';
+      ctx.fillText('📖 Series – Tamil AI for Kids • @2grameshmail', 180, 615);
     }
 
-    // --- Initial Static Draw on Load ---
     window.addEventListener('load', () => {
       drawScene(0);
     });
