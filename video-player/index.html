@@ -208,6 +208,13 @@
       color: #38bdf8;
       font-weight: 800;
     }
+    .audio-player-box {
+      background: #1f2937;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      border: 1px solid #374151;
+    }
   </style>
 </head>
 <body>
@@ -228,10 +235,19 @@
       <div class="panel-section">
         <div class="panel-title">🎬 1. Play Video with Your Voice</div>
         <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;">
-          Using your Vocaroo recording (<span class="highlight">voca.ro/1op2MSdN9MuX</span>) and the exact visual theme from your <b>Part 3 video</b>!
+          Playing your Vocaroo voice recording (<span class="highlight">voca.ro/1op2MSdN9MuX</span>) synced with the animated AI Robot!
         </p>
+
+        <!-- Visible HTML5 Audio Player for Direct Inspection & Play -->
+        <div class="audio-player-box">
+          <div style="font-size: 12px; color: #10b981; font-weight: 800; margin-bottom: 6px;">
+            🎙️ YOUR VOCAROO VOICE RECORDING:
+          </div>
+          <audio id="voiceAudio" controls preload="auto" style="width: 100%;"></audio>
+        </div>
+
         <button id="playBtn" class="btn">
-          <span>▶️ Play Video & Voice</span>
+          <span>▶️ Play Video & Voice Sync</span>
         </button>
         <div id="playStatus" class="status-badge">Ready to Play</div>
       </div>
@@ -240,7 +256,7 @@
       <div class="panel-section">
         <div class="panel-title">💾 2. Record & Save Video File (.webm)</div>
         <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">
-          Click to automatically record the Canvas visuals + your voice. It downloads as a <b>ready-to-upload YouTube Short (.webm)</b>!
+          Click to automatically record the Canvas visuals + your Vocaroo voice. It downloads as a <b>ready-to-upload YouTube Short (.webm)</b>!
         </p>
         <button id="recordBtn" class="btn btn-record">
           <span>⏺️ Generate & Download Video File (.webm)</span>
@@ -306,11 +322,8 @@ Part 5 → Coming Soon! 🔜
     </div>
   </div>
 
-  <!-- Hidden Audio Player -->
-  <audio id="voiceAudio" crossorigin="anonymous" preload="auto"></audio>
-
   <script>
-    // --- Vocaroo Audio Setup ---
+    // --- Vocaroo Audio Setup (Direct link without CORS restriction) ---
     const VOCAROO_MP3_URL = 'https://media1.vocaroo.com/mp3/1op2MSdN9MuX';
     const audioEl = document.getElementById('voiceAudio');
     audioEl.src = VOCAROO_MP3_URL;
@@ -323,11 +336,6 @@ Part 5 → Coming Soon! 🔜
     let animationId = null;
     let startTime = 0;
     let currentTime = 0;
-
-    // --- Audio Context for Recording Canvas + Audio Together ---
-    let audioCtx = null;
-    let audioSourceNode = null;
-    let audioDestinationNode = null;
 
     // --- DOM Elements ---
     const canvas = document.getElementById('videoCanvas');
@@ -480,38 +488,23 @@ Part 6 → முதல் சொற்கள் ✅ (This video)
       }
     });
 
-    function initAudioContext() {
-      if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
-        audioSourceNode = audioCtx.createMediaElementSource(audioEl);
-        audioDestinationNode = audioCtx.createMediaStreamDestination();
-        audioSourceNode.connect(audioDestinationNode);
-        audioSourceNode.connect(audioCtx.destination);
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-    }
-
-    playBtn.addEventListener('click', async () => {
+    playBtn.addEventListener('click', () => {
       if (isPlaying) {
         stopPlayback();
       } else {
-        await startPlayback(false);
+        startPlayback();
       }
     });
 
-    recordBtn.addEventListener('click', async () => {
+    recordBtn.addEventListener('click', () => {
       if (isRecording) {
         stopRecording();
       } else {
-        await startRecording();
+        startRecording();
       }
     });
 
-    async function startPlayback(recordingMode = false) {
-      initAudioContext();
+    function startPlayback() {
       isPlaying = true;
       startTime = performance.now();
       playBtn.innerHTML = '<span>⏸️ Stop Playback</span>';
@@ -519,11 +512,9 @@ Part 6 → முதல் சொற்கள் ✅ (This video)
       playStatus.classList.add('active');
 
       audioEl.currentTime = 0;
-      try {
-        await audioEl.play();
-      } catch (err) {
-        console.warn("Audio play error:", err);
-      }
+      audioEl.play().catch(err => {
+        console.warn("Play error:", err);
+      });
 
       audioEl.onended = () => {
         if (isRecording) {
@@ -540,22 +531,35 @@ Part 6 → முதல் சொற்கள் ✅ (This video)
       isPlaying = false;
       audioEl.pause();
       if (animationId) cancelAnimationFrame(animationId);
-      playBtn.innerHTML = '<span>▶️ Play Video & Voice</span>';
+      playBtn.innerHTML = '<span>▶️ Play Video & Voice Sync</span>';
       playStatus.textContent = 'Ready to Play';
       playStatus.classList.remove('active');
       drawScene(0);
     }
 
-    async function startRecording() {
-      initAudioContext();
+    function startRecording() {
       recordedChunks = [];
 
+      // 1. Capture Canvas Stream
       const canvasStream = canvas.captureStream(30);
-      const combinedStream = new MediaStream([
-        ...canvasStream.getVideoTracks(),
-        ...audioDestinationNode.stream.getAudioTracks()
-      ]);
 
+      // 2. Capture Audio Stream (Using audio.captureStream if supported, or Web Audio fallback)
+      let audioTrack = null;
+      try {
+        const audioStream = audioEl.captureStream ? audioEl.captureStream() : audioEl.mozCaptureStream();
+        if (audioStream && audioStream.getAudioTracks().length > 0) {
+          audioTrack = audioStream.getAudioTracks()[0];
+        }
+      } catch (err) {
+        console.warn("Audio captureStream fallback used");
+      }
+
+      const tracks = [...canvasStream.getVideoTracks()];
+      if (audioTrack) {
+        tracks.push(audioTrack);
+      }
+
+      const combinedStream = new MediaStream(tracks);
       const options = { mimeType: 'video/webm; codecs=vp9,opus' };
       if (!MediaRecorder.isTypeSupported(options.mimeType)) {
         options.mimeType = 'video/webm';
@@ -594,7 +598,7 @@ Part 6 → முதல் சொற்கள் ✅ (This video)
       recordStatus.classList.add('active');
 
       mediaRecorder.start();
-      await startPlayback(true);
+      startPlayback();
     }
 
     function stopRecording() {
